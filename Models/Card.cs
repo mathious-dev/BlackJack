@@ -46,7 +46,7 @@ public class Card
         }
         return listCards;
     }
-    public int VerifValueCard(Card card)
+    public static int VerifValueCard(Card card)
     {
         if(card.Number>10&&card.Number<14)
             return 10;
@@ -54,5 +54,13 @@ public class Card
             return 11;
         else
             return card.Number;
+    }
+    public static void ReplaceAsCard(List<Card> cards)
+    {
+        foreach(Card card in cards)
+        {
+            if(card.Number==11)
+                card.Number=1;
+        }
     }
 }

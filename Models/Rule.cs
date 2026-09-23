@@ -2,13 +2,26 @@
 
 public class Rule
 {
-    public static void RuleTwentyOne(Player player)
+    public static int NumberMax=21;
+    public static void RuleTwentyOne(List<Player> players)
     {
-        int numberMax=21;
-        
+        var listePlayerMaybeWinners=new List<Player>();;
+        int addition=0;
+        foreach(Player player in players)
+        {
+            if(VerifValueNumbers(addition))
+                listePlayerMaybeWinners.Add(player);
+        }
+        var allPlayersOrder=listePlayerMaybeWinners.OrderByDescending(p=>p.ScoreCards)
+                                                    .ToList();
+        var maxValue=allPlayersOrder.First()                                 
+        foreach(Player player in allPlayersOrder)
+        {
+            
+        }
     }
-    public static int AdditionOfCards(List<Card> cards)
+    public static bool VerifValueNumbers(int addition)
     {
-        return 0;
+        return addition<=NumberMax;
     }
 }
