@@ -1,4 +1,6 @@
-﻿namespace BlackJack.Models;
+﻿using Microsoft.VisualBasic;
+
+namespace BlackJack.Models;
 
 public class Rule
 {
@@ -29,4 +31,6 @@ public class Rule
     {
         return addition<=NumberMax;
     }
+    
+    
 }

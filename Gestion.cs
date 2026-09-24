@@ -1,7 +1,10 @@
 ﻿namespace BlackJack;
 
+using BlackJack.Models;
 public class Gestion
 {
+    List<Bot> bots=new List<Bot>();
+    Player player = new Player();
     public Gestion()
     {
         Menu();
@@ -30,13 +33,44 @@ public class Gestion
     }
     public void StartGame()
     {
+        var allPlayers=new List<Player>();
+        var newPlayer=new Player();
         string name="";
         while(string.IsNullOrWhiteSpace(name))
         {
             Console.WriteLine("\nQuelle est votre nom? ");
             name=Console.ReadLine();
         }
-        
+        newPlayer.Name=name;
+        player=newPlayer;
+        var gameEngine=new GameEngine();
+        gameEngine.Init(bots);
+        allPlayers.Add(player);
+        allPlayers.AddRange(bots);
+        Game(allPlayers,player,gameEngine);
+        bots.Clear();
+    }
+    public void Game(List<Player> allPlayers,Player humanPlayer,GameEngine gameEngine)
+    {
+        int countRound=1;
+        while(allPlayers.Contains(humanPlayer))
+        {
+            Console.ForegroundColor=ConsoleColor.DarkBlue;    
+            Console.WriteLine($"\n|||||||||||||||||||||||||||||||||||||||||||\nRound : {countRound}");
+            Console.ResetColor();
+            gameEngine.Round(allPlayers);
+            countRound++;
+            foreach(Player p in allPlayers)
+            {
+                p.BetOfTheRound=0;
+            }
+        }
+        if(!allPlayers.Contains(player))
+        {
+            Console.ForegroundColor=ConsoleColor.Red;
+            Console.WriteLine("Game Over. Vous avez perdu");
+            Console.ResetColor();
+        }
     }
     public void Test()
     {
