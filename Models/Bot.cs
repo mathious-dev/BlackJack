@@ -21,27 +21,48 @@ public class Bot : Player
         this.Level=level;
     }
     public void BotAction(List<Card> cards,int numberMax,List<Card> generalCards)
-    {
+    {   
+        int chanceToTakeCardInt=0;
+        Random chanceToTakeCard=new Random();
         switch(this.Level)
         {
-            case 1:BotLevelEasy(cards,numberMax);break;
-            case 2:BotLevelMiddle(cards,numberMax);break;
-            case 3:BotLevelHard(cards,numberMax);break;
+            case 1:this.BotLevelEasy(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
+            case 2:this.BotLevelMiddle(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
+            case 3:this.BotLevelHard(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
         }
+        if(chanceToTakeCardInt==1)
+            this.TakeCard(generalCards);
+        else
+            this.StopTakingCards=true;
     }
-    public void BotLevelEasy(List<Card> cards,int numberMax)
+    public void BotLevelEasy(List<Card> cards,int numberMax,List<Card> generalCards,ref int chance,Random chanceToTakeCard)
     {
         switch(this.ScoreCards)
         {
-            case <18: TakeCard();break;
+            case <12:chance=chanceToTakeCard.Next(1,2);break;
+            case <17:chance=chanceToTakeCard.Next(1,3);break;
+            case 20:chance=chanceToTakeCard.Next(1,7);break;
+            case >17:chance=chanceToTakeCard.Next(1,4);break;
         }
     }
-    public void BotLevelMiddle(List<Card> cards,int numberMax)
+    public void BotLevelMiddle(List<Card> cards,int numberMax,List<Card> generalCards,ref int chance,Random chanceToTakeCard)
     {
-        
+        switch(this.ScoreCards)
+        {
+            case <12:chance=1;break;
+            case <17:chance=chanceToTakeCard.Next(1,3);break;
+            case 20:chance=chanceToTakeCard.Next(1,14);break;
+            case >17:chance=chanceToTakeCard.Next(1,8);break;
+        }
     }
-    public void BotLevelHard(List<Card> cards,int numberMax)
+    public void BotLevelHard(List<Card> cards,int numberMax,List<Card> generalCards,ref int chance,Random chanceToTakeCard)
     {
-        
+        switch(this.ScoreCards)
+        {
+            case <12:chance=1;break;
+            case <17:chance=chanceToTakeCard.Next(1,5);break;
+            case 20:chance=chanceToTakeCard.Next(1,50);break;
+            case >17:chance=chanceToTakeCard.Next(1,10);break;
+        }
     }
 }

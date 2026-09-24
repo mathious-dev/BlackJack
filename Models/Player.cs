@@ -6,6 +6,7 @@ public class Player
     public int BetOfTheRound{get;set;}=0;
     public List<Card>ListCards{get;set;}=new List<Card>();
     public int ScoreCards{get;set;}=0;
+    public bool StopTakingCards{get;set;}=false;
     public void TakeCard(List<Card> generalCards)
     {   
         var newCard=generalCards.First();
