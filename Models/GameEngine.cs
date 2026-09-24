@@ -2,17 +2,19 @@
 
 public class GameEngine
 {
+    int numberMax=Rule.NumberMax;
     public void WhoWin()
     {
 
     }
-    public void Round(List<Player> players)
+    public void Round(List<Player> players,List<Card>generalCards)
     {
         foreach(Player player in players)
         {
-            if(player is Bot)
+
+            if(player is Bot bot)
             {
-                
+                bot.BotAction(bot.ListCards,numberMax,generalCards);
             }
             else
             {
@@ -39,5 +41,13 @@ public class GameEngine
             Console.WriteLine($"\nLe bot {bot.Name} a rejoint la partie");
         }
         Console.ResetColor();
+    }
+    public (Card,Card) GiveCardsStart(List<Card> listCards)
+    {
+        var FirstCard=listCards[0];
+        listCards.RemoveAt(0);
+        var SecondCard=listCards[0];
+        listCards.RemoveAt(0);
+        return (FirstCard,SecondCard);
     }
 }

@@ -20,7 +20,27 @@ public class Bot : Player
     {
         this.Level=level;
     }
-    public void BotAction()
+    public void BotAction(List<Card> cards,int numberMax,List<Card> generalCards)
+    {
+        switch(this.Level)
+        {
+            case 1:BotLevelEasy(cards,numberMax);break;
+            case 2:BotLevelMiddle(cards,numberMax);break;
+            case 3:BotLevelHard(cards,numberMax);break;
+        }
+    }
+    public void BotLevelEasy(List<Card> cards,int numberMax)
+    {
+        switch(this.ScoreCards)
+        {
+            case <18: TakeCard();break;
+        }
+    }
+    public void BotLevelMiddle(List<Card> cards,int numberMax)
+    {
+        
+    }
+    public void BotLevelHard(List<Card> cards,int numberMax)
     {
         
     }

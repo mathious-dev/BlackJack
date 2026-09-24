@@ -36,6 +36,7 @@ public class Card
     }
     public static List<Card> GeneralDeckCard()
     {
+        var randomCard=new Random();
         var listCards = new List<Card>();
         for (int i = 2; i <= 14; i++)//car l'As va valoir à la fois 1 et 14
         {
@@ -44,6 +45,7 @@ public class Card
                 listCards.Add(new Card(i) { Type = (TypeCard)j });
             }
         }
+        listCards=listCards.OrderBy(c=>randomCard.Next()).ToList();
         return listCards;
     }
     public static int VerifValueCard(Card card)
