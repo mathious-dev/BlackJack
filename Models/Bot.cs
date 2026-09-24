@@ -24,16 +24,20 @@ public class Bot : Player
     {   
         int chanceToTakeCardInt=0;
         Random chanceToTakeCard=new Random();
-        switch(this.Level)
+        while(chanceToTakeCardInt!=1)
         {
-            case 1:this.BotLevelEasy(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
-            case 2:this.BotLevelMiddle(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
-            case 3:this.BotLevelHard(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
+            switch(this.Level)
+            {
+                case 1:this.BotLevelEasy(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
+                case 2:this.BotLevelMiddle(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
+                case 3:this.BotLevelHard(cards,numberMax,generalCards,ref chanceToTakeCardInt,chanceToTakeCard);break;
+            }
+            if(chanceToTakeCardInt==1)
+                this.TakeCard(generalCards);
+            else
+                this.StopTakingCards=true;
         }
-        if(chanceToTakeCardInt==1)
-            this.TakeCard(generalCards);
-        else
-            this.StopTakingCards=true;
+        
     }
     public void BotLevelEasy(List<Card> cards,int numberMax,List<Card> generalCards,ref int chance,Random chanceToTakeCard)
     {
@@ -42,6 +46,7 @@ public class Bot : Player
             case <12:chance=chanceToTakeCard.Next(1,2);break;
             case <17:chance=chanceToTakeCard.Next(1,3);break;
             case 20:chance=chanceToTakeCard.Next(1,7);break;
+            case 21:chance=1;break;
             case >17:chance=chanceToTakeCard.Next(1,4);break;
         }
     }
@@ -52,6 +57,7 @@ public class Bot : Player
             case <12:chance=1;break;
             case <17:chance=chanceToTakeCard.Next(1,3);break;
             case 20:chance=chanceToTakeCard.Next(1,14);break;
+            case 21:chance=1;break;
             case >17:chance=chanceToTakeCard.Next(1,8);break;
         }
     }
@@ -62,6 +68,7 @@ public class Bot : Player
             case <12:chance=1;break;
             case <17:chance=chanceToTakeCard.Next(1,5);break;
             case 20:chance=chanceToTakeCard.Next(1,50);break;
+            case 21:chance=1;break;
             case >17:chance=chanceToTakeCard.Next(1,10);break;
         }
     }

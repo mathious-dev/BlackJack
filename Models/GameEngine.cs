@@ -11,15 +11,33 @@ public class GameEngine
     {
         foreach(Player player in players)
         {
-
             if(player is Bot bot)
             {
                 bot.BotAction(bot.ListCards,numberMax,generalCards);
             }
             else
             {
-                
+                Console.Write("\n Que voulez-vous faire?");
+                UserChoice();
             }
+        }
+    }
+    public void UserChoice()
+    {
+        int choice=0;
+        string[] tab={"Prendre une carte","Suivre","Consulter vos informations"};
+        int i=1;
+        foreach(string sentence in tab)
+        {
+            Console.WriteLine($"\n{i}.{sentence}");
+            i++;
+        }
+        choice=Gestion.IntEnter();
+        switch(choice)
+        {
+            case 1:;break;
+            case 2:;break;
+            case 3:;break;
         }
     }
     public void Init(List<Bot> bots)
@@ -42,12 +60,5 @@ public class GameEngine
         }
         Console.ResetColor();
     }
-    public (Card,Card) GiveCardsStart(List<Card> listCards)
-    {
-        var FirstCard=listCards[0];
-        listCards.RemoveAt(0);
-        var SecondCard=listCards[0];
-        listCards.RemoveAt(0);
-        return (FirstCard,SecondCard);
-    }
+    
 }

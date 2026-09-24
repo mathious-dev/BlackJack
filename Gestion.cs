@@ -35,6 +35,7 @@ public class Gestion
     {
         var allPlayers=new List<Player>();
         var newPlayer=new Player();
+        var listGeneralCards=Card.GeneralDeckCard();
         string name="";
         while(string.IsNullOrWhiteSpace(name))
         {
@@ -47,10 +48,11 @@ public class Gestion
         gameEngine.Init(bots);
         allPlayers.Add(player);
         allPlayers.AddRange(bots);
-        Game(allPlayers,player,gameEngine);
+        GiveStartingCards(allPlayers,listGeneralCards);
+        Game(allPlayers,player,gameEngine,listGeneralCards);
         bots.Clear();
     }
-    public void Game(List<Player> allPlayers,Player humanPlayer,GameEngine gameEngine)
+    public void Game(List<Player> allPlayers,Player humanPlayer,GameEngine gameEngine,List<Card>listGeneralCards)
     {
         int countRound=1;
         while(allPlayers.Contains(humanPlayer))
@@ -58,7 +60,7 @@ public class Gestion
             Console.ForegroundColor=ConsoleColor.DarkBlue;    
             Console.WriteLine($"\n|||||||||||||||||||||||||||||||||||||||||||\nRound : {countRound}");
             Console.ResetColor();
-            gameEngine.Round(allPlayers);
+            gameEngine.Round(allPlayers,listGeneralCards);
             countRound++;
             foreach(Player p in allPlayers)
             {
@@ -82,6 +84,17 @@ public class Gestion
         string choice=Console.ReadLine();
         int.TryParse(choice,out intChoice);
         return intChoice;
-        
+    }
+    public void GiveStartingCards(List<Player> allPlayers,List<Card>listGeneralCards)
+    {
+        foreach(Player player in allPlayers)
+        {
+            for(int i=1;i<3;i++)
+            {
+                var card=listGeneralCards.First();
+                listGeneralCards.RemoveAt(0);
+                player.ListCards.Add(card);
+            }
+        }
     }
 }

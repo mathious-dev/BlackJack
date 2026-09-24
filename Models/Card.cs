@@ -65,4 +65,12 @@ public class Card
                 card.Number=1;
         }
     }
+    public static (Card,Card) GiveCardsStart(List<Card> listCards)
+    {
+        var FirstCard=listCards[0];
+        listCards.RemoveAt(0);
+        var SecondCard=listCards[0];
+        listCards.RemoveAt(0);
+        return (FirstCard,SecondCard);
+    }
 }
