@@ -35,7 +35,7 @@ public class Bot : Player
             if(chanceToTakeCardInt==1)
                 this.TakeCard(generalCards);
             else
-                this.StopTakingCards=true;
+                this.StopTakingCardsFunction();
         }
         
     }

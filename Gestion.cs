@@ -55,6 +55,7 @@ public class Gestion
     public void Game(List<Player> allPlayers,Player humanPlayer,GameEngine gameEngine,List<Card>listGeneralCards)
     {
         int countRound=1;
+
         while(allPlayers.Contains(humanPlayer))
         {
             Console.ForegroundColor=ConsoleColor.DarkBlue;    
@@ -64,7 +65,7 @@ public class Gestion
             countRound++;
             foreach(Player p in allPlayers)
             {
-                p.BetOfTheRound=0;
+                p.ResetInformation();
             }
         }
         if(!allPlayers.Contains(player))

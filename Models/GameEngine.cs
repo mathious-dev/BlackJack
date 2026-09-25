@@ -18,26 +18,29 @@ public class GameEngine
             else
             {
                 Console.Write("\n Que voulez-vous faire?");
-                UserChoice();
+                UserChoice(player,generalCards);
             }
         }
     }
-    public void UserChoice()
+    public void UserChoice(Player humanPlayer,List<Card>generalCards)
     {
         int choice=0;
         string[] tab={"Prendre une carte","Suivre","Consulter vos informations"};
         int i=1;
-        foreach(string sentence in tab)
+        while(choice!=2||Rule.VerifValueNumbers(humanPlayer.ScoreCards))
         {
-            Console.WriteLine($"\n{i}.{sentence}");
-            i++;
-        }
-        choice=Gestion.IntEnter();
-        switch(choice)
-        {
-            case 1:;break;
-            case 2:;break;
-            case 3:;break;
+            foreach(string sentence in tab)
+            {
+                Console.WriteLine($"\n{i}.{sentence}");
+                i++;
+            }
+            choice=Gestion.IntEnter();
+            switch(choice)
+            {
+                case 1:humanPlayer.TakeCard(generalCards);break;
+                case 2:humanPlayer.StopTakingCardsFunction();break;
+                case 3:humanPlayer.CheckBet();humanPlayer.CheckCard();break;
+            }
         }
     }
     public void Init(List<Bot> bots)
