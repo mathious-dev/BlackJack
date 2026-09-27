@@ -67,10 +67,12 @@ public class Card
     }
     public static (Card,Card) GiveCardsStart(List<Card> listCards)
     {
-        var FirstCard=listCards[0];
+        var firstCard=listCards[0];
         listCards.RemoveAt(0);
-        var SecondCard=listCards[0];
+        var secondCard=listCards[0];
         listCards.RemoveAt(0);
-        return (FirstCard,SecondCard);
+        firstCard.Number=VerifValueCard(firstCard);
+        secondCard.Number=VerifValueCard(secondCard);
+        return (firstCard,secondCard);
     }
 }

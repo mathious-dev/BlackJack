@@ -86,7 +86,7 @@ public class Gestion
         int.TryParse(choice,out intChoice);
         return intChoice;
     }
-    public void GiveStartingCards(List<Player> allPlayers,List<Card>listGeneralCards)
+    public static void GiveStartingCards(List<Player> allPlayers,List<Card>listGeneralCards)
     {
         foreach(Player player in allPlayers)
         {

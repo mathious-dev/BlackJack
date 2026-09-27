@@ -31,6 +31,11 @@ public class Rule
     {
         return addition<=NumberMax;
     }
-    
+    public void WhoWinBlackjack(List<Player>potentialWinners,List<Card>generalCards)
+    {
+        var dealer=new Player{Name="Dealer"};
+        var (firstCard,secondCard)=Card.GiveCardsStart(generalCards);
+        
+    }
     
 }

@@ -40,4 +40,17 @@ public class Player
             Console.WriteLine($"\n{(FaceCard)card.Number} de {card.Type}");
         }
     }
+    public void ScoreOfPLayerUpdating(Player player)
+    {
+        var newlistCardsPlayer=new List<Card>();
+        if(player.ListCards.Count()==2)
+            newlistCardsPlayer=player.ListCards.Skip(2).ToList();
+        else
+            newlistCardsPlayer=player.ListCards;
+        foreach(Card card in newlistCardsPlayer)
+        {
+            player.ScoreCards+=card.Number;
+        }
+        
+    }
 }

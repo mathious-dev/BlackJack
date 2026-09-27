@@ -3,10 +3,10 @@
 public class GameEngine
 {
     int numberMax=Rule.NumberMax;
-    public void WhoWin()
-    {
+    // public void WhoWin()
+    // {
 
-    }
+    // }
     public void Round(List<Player> players,List<Card>generalCards)
     {
         foreach(Player player in players)
