@@ -9,6 +9,8 @@ public class GameEngine
     // }
     public void Round(List<Player> players,List<Card>generalCards)
     {
+        var winnersSameScore=new List<Player>();
+        var potentialWinners=new List<Player>();
         foreach(Player player in players)
         {
             if(player is Bot bot)
@@ -21,6 +23,9 @@ public class GameEngine
                 UserChoice(player,generalCards);
             }
         }
+        potentialWinners=players.Where(p=>p.ScoreCards<22).ToList();
+        (potentialWinners,winnersSameScore)=Rule.WhoWinBlackjack(potentialWinners,generalCards);
+        Player.ShowWinnersOrWinnersWithSameScore(potentialWinners,winnersSameScore);
     }
     public void UserChoice(Player humanPlayer,List<Card>generalCards)
     {

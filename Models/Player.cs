@@ -18,6 +18,15 @@ public class Player
         if(!Rule.VerifValueNumbers(ScoreCards))
             Card.ReplaceAsCard(this.ListCards);
     }
+    public void ShowPoints(int IsShowingWinners)
+    {
+        if(IsShowingWinners==1)
+            Console.WriteLine($"Votre score est de : {this.ScoreCards}");
+        else if(IsShowingWinners==2)
+            Console.WriteLine($"{this.ScoreCards}");
+        else
+           Console.WriteLine($"Le score de {this.Name} est de : {this.ScoreCards}");
+    }
     public void StopTakingCardsFunction()
     {
         this.StopTakingCards=true;
@@ -39,5 +48,33 @@ public class Player
         {
             Console.WriteLine($"\n{(FaceCard)card.Number} de {card.Type}");
         }
+    }
+    public static void ShowWinnersOrWinnersWithSameScore(List<Player>potentialWinners,List<Player>winnersWithSameScore)
+    {
+        if(potentialWinners.Any())
+        {
+            if(potentialWinners.Count()==1)
+                Console.WriteLine("\nLe seul gagnant de jeton est : ");
+            else
+                Console.WriteLine("\nLes gagnants de jeton sont : ");
+            foreach(Player player in potentialWinners)
+            {
+                Console.WriteLine($"\n{player.Name} avec ");
+                player.ShowPoints(2);
+            }
+        }
+        if(winnersWithSameScore.Any())
+        {
+            if(winnersWithSameScore.Count()==1)
+                Console.WriteLine("\nLe seul gagnant égalité avec le croupier est : ");
+            else
+                Console.WriteLine("\nLes gagnants égalité avec le croupier sont : ");
+            foreach(Player player in winnersWithSameScore)
+            {
+                Console.WriteLine($"\n{player.Name} avec ");
+                player.ShowPoints(2);
+            }
+        }
+        
     }
 }

@@ -31,7 +31,7 @@ public class Rule
     {
         return addition<=NumberMax;
     }
-    public void WhoWinBlackjack(List<Player>potentialWinners,List<Card>generalCards)
+    public static (List<Player>,List<Player>) WhoWinBlackjack(List<Player>?potentialWinners,List<Card>?generalCards)
     {
         var winnersWithSameScoreAsDealer=new List<Player>();
         var dealer=new Player{Name="Dealer"};
@@ -50,6 +50,7 @@ public class Rule
                     winnersWithSameScoreAsDealer.Add(player);
             }
         }
+        return (potentialWinners,winnersWithSameScoreAsDealer);
     }
     
 }
