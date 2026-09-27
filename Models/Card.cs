@@ -48,14 +48,14 @@ public class Card
         listCards=listCards.OrderBy(c=>randomCard.Next()).ToList();
         return listCards;
     }
-    public static int VerifValueCard(Card card)
+    public int VerifValueCard()
     {
-        if(card.Number>10&&card.Number<14)
+        if(this.Number>10&&this.Number<14)
             return 10;
-        else if(card.Number==14)
+        else if(this.Number==14)
             return 11;
         else
-            return card.Number;
+            return this.Number;
     }
     public static void ReplaceAsCard(List<Card> cards)
     {
@@ -64,15 +64,5 @@ public class Card
             if(card.Number==11)
                 card.Number=1;
         }
-    }
-    public static (Card,Card) GiveCardsStart(List<Card> listCards)
-    {
-        var firstCard=listCards[0];
-        listCards.RemoveAt(0);
-        var secondCard=listCards[0];
-        listCards.RemoveAt(0);
-        firstCard.Number=VerifValueCard(firstCard);
-        secondCard.Number=VerifValueCard(secondCard);
-        return (firstCard,secondCard);
     }
 }

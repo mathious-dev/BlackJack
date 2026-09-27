@@ -12,7 +12,7 @@ public class Player
     {   
         var newCard=generalCards.First();
         this.ListCards.Add(newCard);
-        var cardValue=Card.VerifValueCard(newCard);
+        var cardValue=newCard.VerifValueCard();
         generalCards.RemoveAt(0);
         this.ScoreCards+=cardValue;
         if(!Rule.VerifValueNumbers(ScoreCards))
@@ -39,18 +39,5 @@ public class Player
         {
             Console.WriteLine($"\n{(FaceCard)card.Number} de {card.Type}");
         }
-    }
-    public void ScoreOfPLayerUpdating(Player player)
-    {
-        var newlistCardsPlayer=new List<Card>();
-        if(player.ListCards.Count()==2)
-            newlistCardsPlayer=player.ListCards.Skip(2).ToList();
-        else
-            newlistCardsPlayer=player.ListCards;
-        foreach(Card card in newlistCardsPlayer)
-        {
-            player.ScoreCards+=card.Number;
-        }
-        
     }
 }

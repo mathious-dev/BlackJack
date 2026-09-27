@@ -48,7 +48,7 @@ public class Gestion
         gameEngine.Init(bots);
         allPlayers.Add(player);
         allPlayers.AddRange(bots);
-        GiveStartingCards(allPlayers,listGeneralCards);
+        GiveStartingCards(allPlayers,null,listGeneralCards);
         Game(allPlayers,player,gameEngine,listGeneralCards);
         bots.Clear();
     }
@@ -86,16 +86,26 @@ public class Gestion
         int.TryParse(choice,out intChoice);
         return intChoice;
     }
-    public static void GiveStartingCards(List<Player> allPlayers,List<Card>listGeneralCards)
+    public static void GiveStartingCards(List<Player>? allPlayers,Player? dealer,List<Card>listGeneralCards)
     {
-        foreach(Player player in allPlayers)
+        if(allPlayers.Any())
+        {
+            foreach(Player player in allPlayers)
+            {
+                for(int i=1;i<3;i++)
+                {
+                    player.TakeCard(listGeneralCards);
+                }
+            }
+        }
+        else if(dealer.Name!=null)
         {
             for(int i=1;i<3;i++)
             {
-                var card=listGeneralCards.First();
-                listGeneralCards.RemoveAt(0);
-                player.ListCards.Add(card);
+                dealer.TakeCard(listGeneralCards);
             }
         }
+            
+        
     }
 }

@@ -33,9 +33,23 @@ public class Rule
     }
     public void WhoWinBlackjack(List<Player>potentialWinners,List<Card>generalCards)
     {
+        var winnersWithSameScoreAsDealer=new List<Player>();
         var dealer=new Player{Name="Dealer"};
-        var (firstCard,secondCard)=Card.GiveCardsStart(generalCards);
-        
+        Gestion.GiveStartingCards(null,dealer,generalCards);
+        while(dealer.ScoreCards<17)
+        {
+            dealer.TakeCard(generalCards);
+        }
+        if(dealer.ScoreCards<22)
+        {
+            foreach(Player player in potentialWinners.ToList())
+            {
+                if(dealer.ScoreCards>player.ScoreCards)
+                    potentialWinners.Remove(player);
+                else if(dealer.ScoreCards==player.ScoreCards)
+                    winnersWithSameScoreAsDealer.Add(player);
+            }
+        }
     }
     
 }
