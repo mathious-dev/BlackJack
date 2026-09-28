@@ -61,6 +61,7 @@ public class Player
             {
                 Console.WriteLine($"\n{player.Name} avec ");
                 player.ShowPoints(2);
+                player.GiveWinnerCoinsAndReturnCoins(true);
             }
         }
         if(winnersWithSameScore.Any())
@@ -73,8 +74,20 @@ public class Player
             {
                 Console.WriteLine($"\n{player.Name} avec ");
                 player.ShowPoints(2);
+                player.GiveWinnerCoinsAndReturnCoins(false);
             }
         }
-        
+    }
+    public void GiveWinnerCoinsAndReturnCoins(bool winner)
+    {
+        if(winner)
+        {
+            if(this.ListCards.Count()==2&&this.ScoreCards==21)
+                this.Coin+=(int)(this.BetOfTheRound*2.5);
+            else
+                this.Coin+=this.BetOfTheRound*2;
+        }
+        else
+            this.Coin+=this.BetOfTheRound;
     }
 }
