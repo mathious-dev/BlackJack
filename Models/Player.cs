@@ -81,9 +81,9 @@ public class Player
         if(potentialWinners.Any())
         {
             if(potentialWinners.Count()==1)
-                Console.WriteLine("\nLe seul gagnant de jeton est : ");
+                Console.WriteLine("\nLe seul gagnant de jetons est : ");
             else
-                Console.WriteLine("\nLes gagnants de jeton sont : ");
+                Console.WriteLine("\nLes gagnants de jetons sont : ");
             foreach(Player player in potentialWinners)
             {
                 Console.WriteLine($"\n{player.Name} avec ");
@@ -107,15 +107,22 @@ public class Player
     }
     public void GiveWinnerCoinsAndReturnCoins(bool winner)
     {
+        int amountWin=0;
         if(winner)
         {
             if(this.ListCards.Count()==2&&this.ScoreCards==21)
-                this.Coin+=(int)(this.BetOfTheRound*2.5);
+                amountWin=(int)(this.BetOfTheRound*2.5);
             else
-                this.Coin+=this.BetOfTheRound*2;
+                amountWin=this.BetOfTheRound*2;
+            this.Coin+=amountWin;
+            Console.WriteLine($"\nLe joueur {this.Name} a gagné {amountWin} jetons");
         }
         else
-            this.Coin+=this.BetOfTheRound;
+        {
+            Console.WriteLine($"\n égalité pour {this.Name}, il récupère ses jetons");
+            this.Coin+=this.BetOfTheRound; 
+        }
+        
     }
     public static List<Player> RemoveLoser(List<Player> listPlayers)
     {
