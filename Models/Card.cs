@@ -24,7 +24,7 @@ public class Card
         get { return _number; }
         set
         {
-            if (value < 15 && value > 1)
+            if (value < 15 && value >= 1)//on autorise le 1 pour l'As
                 _number = value;
             else
                 throw new ArgumentOutOfRangeException("Le nombre doit être entre 2 et 14 compris");

@@ -17,14 +17,13 @@ public class Player
         this.ScoreCards+=cardValue;
         if(!Rule.VerifValueNumbers(ScoreCards))
             Card.ReplaceAsCard(this.ListCards);
-        if(this.ListCards.Count()>=2)
-        {
-            this.CheckCard();
-            if(this is Bot)
-                this.ShowPoints(3);
-            else
-                this.ShowPoints(1);
-        }
+        // if(this.ListCards.Count()>=2)
+        // {
+        //     if(this is Bot)
+        //         this.ShowPoints(3);
+        //     else
+        //         this.ShowPoints(1);
+        // }
     }
     public bool Bet(int amount)
     {

@@ -85,7 +85,7 @@ public class Gestion
     }
     public static void GiveStartingCards(List<Player>? allPlayers,Player? dealer,List<Card>listGeneralCards)
     {
-        if(allPlayers.Any())
+        if(allPlayers!=null)
         {
             foreach(Player player in allPlayers)
             {
@@ -95,7 +95,7 @@ public class Gestion
                 }
             }
         }
-        else if(dealer.Name!=null)
+        else if(dealer!=null)
         {
             for(int i=1;i<3;i++)
             {

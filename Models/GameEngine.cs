@@ -11,11 +11,11 @@ public class GameEngine
         foreach(Player player in players)
         {
             bool finishBet=false;
-           
-            player.CheckCard();
             if(player is Bot bot)
             {
                 bot.BetBot();
+                player.CheckCard();
+                player.ShowPoints(3);
                 bot.BotAction(bot.ListCards,numberMax,generalCards);
             }
             else
@@ -26,6 +26,8 @@ public class GameEngine
                     int amountBet=Gestion.IntEnter();
                     finishBet=player.Bet(amountBet);
                 }
+                player.CheckCard();
+                player.ShowPoints(1);
                 Console.Write("\n Que voulez-vous faire?");
                 UserChoice(player,generalCards);
             }

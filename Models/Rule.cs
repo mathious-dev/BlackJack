@@ -33,23 +33,29 @@ public class Rule
             Console.WriteLine($"\nVotre score est plus élevé que {NumberMax}");
         return addition<=NumberMax;
     }
-    public static (List<Player>,List<Player>) WhoWinBlackjack(List<Player>?potentialWinners,List<Card>?generalCards)
+    public static (List<Player>,List<Player>) WhoWinBlackjack(List<Player>potentialWinners,List<Card>generalCards)
     {
         var winnersWithSameScoreAsDealer=new List<Player>();
         var dealer=new Player{Name="Dealer"};
         Gestion.GiveStartingCards(null,dealer,generalCards);
+        dealer.CheckCard();
         while(dealer.ScoreCards<17)
         {
             dealer.TakeCard(generalCards);
+            dealer.CheckCard();
         }
         if(dealer.ScoreCards<22)
         {
+            dealer.ShowPoints(3);
             foreach(Player player in potentialWinners.ToList())
             {
                 if(dealer.ScoreCards>player.ScoreCards)
                     potentialWinners.Remove(player);
                 else if(dealer.ScoreCards==player.ScoreCards)
+                {
+                    potentialWinners.Remove(player);
                     winnersWithSameScoreAsDealer.Add(player);
+                }  
             }
         }
         return (potentialWinners,winnersWithSameScoreAsDealer);
