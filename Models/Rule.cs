@@ -29,6 +29,8 @@ public class Rule
     }
     public static bool VerifValueNumbers(int addition)
     {
+        if(addition>NumberMax)
+            Console.WriteLine($"\nVotre score est plus élevé que {NumberMax}");
         return addition<=NumberMax;
     }
     public static (List<Player>,List<Player>) WhoWinBlackjack(List<Player>?potentialWinners,List<Card>?generalCards)

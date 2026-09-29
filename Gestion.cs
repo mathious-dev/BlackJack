@@ -16,7 +16,7 @@ public class Gestion
         while(choice!=3)
         {
             int i=1;
-            string[] options={"Jouer","Tester","Quitter"};
+            string[] options={"Jouer","Quitter"};
             foreach(string option in options)
             {
                 Console.WriteLine($"{i}.{option}");
@@ -26,8 +26,7 @@ public class Gestion
             switch(choice)
             {
                 case 1: StartGame();break;
-                case 2: Test();break;
-                case 3: Console.WriteLine("Fin du jeu");break;
+                case 2: Console.WriteLine("Fin du jeu");break;
             }
         }
     }
@@ -51,6 +50,7 @@ public class Gestion
         GiveStartingCards(allPlayers,null,listGeneralCards);
         Game(allPlayers,player,gameEngine,listGeneralCards);
         bots.Clear();
+        
     }
     public void Game(List<Player> allPlayers,Player humanPlayer,GameEngine gameEngine,List<Card>listGeneralCards)
     {
@@ -67,6 +67,7 @@ public class Gestion
             {
                 p.ResetInformation();
             }
+            allPlayers=Player.RemoveLoser(allPlayers);
         }
         if(!allPlayers.Contains(player))
         {
@@ -74,10 +75,6 @@ public class Gestion
             Console.WriteLine("Game Over. Vous avez perdu");
             Console.ResetColor();
         }
-    }
-    public void Test()
-    {
-        
     }
     public static int IntEnter()
     {

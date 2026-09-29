@@ -17,6 +17,8 @@ public class Player
         this.ScoreCards+=cardValue;
         if(!Rule.VerifValueNumbers(ScoreCards))
             Card.ReplaceAsCard(this.ListCards);
+        this.CheckCard();
+        this.ShowPoints(1);
     }
     public void ShowPoints(int IsShowingWinners)
     {
@@ -43,7 +45,11 @@ public class Player
     }
     public void CheckCard()
     {
-        Console.WriteLine($"\nVos cartes sont :");
+        if(this is not Bot)
+            Console.WriteLine($"\nVos cartes sont :");
+        else
+            Console.WriteLine($"\nLes cartes sont :");
+        
         foreach(Card card in this.ListCards)
         {
             Console.WriteLine($"\n{(FaceCard)card.Number} de {card.Type}");
@@ -89,5 +95,17 @@ public class Player
         }
         else
             this.Coin+=this.BetOfTheRound;
+    }
+    public static List<Player> RemoveLoser(List<Player> listPlayers)
+    {
+        var newListPlayers=new List<Player>();
+        foreach(Player player in listPlayers)
+        {
+            if(player.Coin>0)
+                newListPlayers.Add(player);
+            else
+                Console.WriteLine($"\nLe joueur : {player.Name} a perdu");
+        }
+        return newListPlayers;
     }
 }
