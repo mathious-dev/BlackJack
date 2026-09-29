@@ -32,6 +32,7 @@ public class Player
     public void StopTakingCardsFunction()
     {
         this.StopTakingCards=true;
+        Console.WriteLine($"\n{this.Name} suit");
     }
     public void ResetInformation()
     {
@@ -48,7 +49,7 @@ public class Player
         if(this is not Bot)
             Console.WriteLine($"\nVos cartes sont :");
         else
-            Console.WriteLine($"\nLes cartes sont :");
+            Console.WriteLine($"\nLes cartes de {this.Name} sont :");
         
         foreach(Card card in this.ListCards)
         {

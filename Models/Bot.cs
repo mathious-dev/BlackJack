@@ -24,7 +24,7 @@ public class Bot : Player
     {   
         int chanceToTakeCardInt=0;
         Random chanceToTakeCard=new Random();
-        while(chanceToTakeCardInt!=1)
+        while(chanceToTakeCardInt!=1&&this.StopTakingCards==false)
         {
             switch(this.Level)
             {
