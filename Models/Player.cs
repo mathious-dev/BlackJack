@@ -17,8 +17,29 @@ public class Player
         this.ScoreCards+=cardValue;
         if(!Rule.VerifValueNumbers(ScoreCards))
             Card.ReplaceAsCard(this.ListCards);
-        this.CheckCard();
-        this.ShowPoints(1);
+        if(this.ListCards.Count()>=2)
+        {
+            this.CheckCard();
+            if(this is Bot)
+                this.ShowPoints(3);
+            else
+                this.ShowPoints(1);
+        }
+    }
+    public bool Bet(int amount)
+    {
+        if(amount>0&&amount<=this.Coin)
+        {
+            BetOfTheRound=amount;
+            Coin-=amount;
+            Console.WriteLine($"\nMise de {this.BetOfTheRound} par {this.Name}");
+            return true;
+        }
+        else
+        {
+            Console.WriteLine($"\nErreur de mise ");
+            return false;
+        }
     }
     public void ShowPoints(int IsShowingWinners)
     {

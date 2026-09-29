@@ -20,6 +20,14 @@ public class Bot : Player
     {
         this.Level=level;
     }
+    public void BetBot()
+    {
+        Random randomAmount=new Random();
+        int amountBet=randomAmount.Next(1,this.Coin);
+        BetOfTheRound=amountBet;
+        Coin-=amountBet;
+        Console.WriteLine($"\nMise de {this.BetOfTheRound} par {this.Name}");
+    }
     public void BotAction(List<Card> cards,int numberMax,List<Card> generalCards)
     {   
         int chanceToTakeCardInt=0;

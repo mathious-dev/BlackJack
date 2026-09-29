@@ -10,13 +10,22 @@ public class GameEngine
 
         foreach(Player player in players)
         {
+            bool finishBet=false;
+           
             player.CheckCard();
             if(player is Bot bot)
             {
+                bot.BetBot();
                 bot.BotAction(bot.ListCards,numberMax,generalCards);
             }
             else
             {
+                while(!finishBet)
+                {
+                    Console.WriteLine("\nMise : ");
+                    int amountBet=Gestion.IntEnter();
+                    finishBet=player.Bet(amountBet);
+                }
                 Console.Write("\n Que voulez-vous faire?");
                 UserChoice(player,generalCards);
             }
